@@ -5,15 +5,36 @@
 This project asks for a name and prints a welcome message for the Data Engineering course.
 
 ## Setup
+```
 python -m venv .venv
 source .venv/bin/activate      # Mac / Linux
 .venv\Scripts\activate          # Windows
 pip install -r requirements.txt
+```
 
 ## Run tests
-python -m pytest
+`python -m pytest`
 
 ## Example
 Enter your name when prompted:
 
-Ammy, welcome to the Data Engineering course.
+Luel, welcome to the Data Engineering course.
+
+## Project structure
+
+```
+IDS706-Assignment-1/
+├── .github/
+│   └── workflows/
+│       └── test.yml
+├── Dockerfile
+├── .dockerignore
+├── .gitignore
+├── Makefile
+├── README.md
+├── requirements.txt
+├── src/
+│   └── main.py
+├── tests/
+│   └── test_main.py
+```
