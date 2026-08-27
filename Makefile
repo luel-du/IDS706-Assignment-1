@@ -1,14 +1,33 @@
-.PHONY: install test run docker-build docker-run docker-test clean
+.PHONY: all install lint format format-check test check run docker-build docker-run docker-test clean
 
 IMAGE_NAME := data-engineering-demo
 
+# Install, lint, and test
+all: install lint format-check test
+
 # Install dependencies
 install:
+	python -m pip install --upgrade pip
 	python -m pip install -r requirements.txt
+
+# Lint the code with ruff
+lint:
+	python -m ruff check src tests
+
+# Auto-format the code with ruff
+format:
+	python -m ruff format src tests
+
+# Verify formatting without changing files
+format-check:
+	python -m ruff format --check src tests
 
 # Run tests
 test:
 	python -m pytest -q
+
+# Run all local checks: lint, formatting, and tests
+check: lint format-check test
 
 # Run the application
 run:
@@ -28,5 +47,5 @@ docker-test:
 
 # Clean generated files
 clean:
-	rm -rf __pycache__
-	rm -rf .pytest_cache
+	rm -rf __pycache__ src/__pycache__ tests/__pycache__
+	rm -rf .pytest_cache .ruff_cache
